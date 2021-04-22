@@ -22,9 +22,9 @@
                 <a class="nav-link" href="{{ route('barang.index') }}"><i class="fas fa-boxes"></i><span>Daftar Barang</span></a>
             </li>
             <li>
-                <a class="nav-link" href="#"><i class="fas fa-dolly-flatbed"></i><span>Pesanan</span></a>
+                <a class="nav-link" href="{{ route('pesanan.index') }}"><i class="fas fa-dolly-flatbed"></i><span>Pesanan</span></a>
             </li>
-            <li>
+            <!-- <li>
                 <a class="nav-link" href="#"><i class="fas fa-handshake"></i><span>Peminjaman</span></a>
             </li>
             <li>
@@ -33,7 +33,7 @@
             <li class="menu-header">User</li>
             <li>
                 <a href="{{ route('user') }}" class="nav-link" ><i class="fas fa-chart-bar"></i> <span>User</span></a>
-            </li>
+            </li> -->
         </ul>
     </aside>
 </div>

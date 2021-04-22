@@ -15,9 +15,9 @@ class BarangController extends Controller
     public function index()
     {
         //melihat halaman barang
-        $items = Barang::all();
+        $items = Barang::paginate(5);
         return view('pages.barang.index', [
-            'items' => $items,
+            'item' => $items,
         ]);
     }
 
@@ -74,6 +74,7 @@ class BarangController extends Controller
         ]);
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -106,8 +107,34 @@ class BarangController extends Controller
         return redirect('/barang');
     }
 
-    // public function hitung(Barang $barang){
-    //     $barangs = Barang::count();
-    //     return view('pages.barang.index', compact('barangs'));
-    // }
+    public function trash()
+    {
+        // mengampil data Barang yang sudah dihapus
+        $item = Barang::onlyTrashed()->get();
+        return view('pages.barang.trash', ['item' => $item]);
+    }
+    public function restore($id)
+    {
+        $items = Barang::onlyTrashed()->where('id', $id);
+        $items->restore();
+        return redirect()->route('barang.trash');
+    }
+    public function restoreAll()
+    {
+        $items = Barang::onlyTrashed();
+        $items->restore();
+        return redirect()->route('barang.trash');
+    }
+    public function delete($id)
+    {
+        $items = Barang::onlyTrashed()->where('id', $id);
+        $items->forceDelete();
+        return redirect()->route('barang.index');
+    }
+    public function deleteAll()
+    {
+        $items = Barang::onlyTrashed();
+        $items->forceDelete();
+        return redirect()->route('barang.index');
+    }
 }
