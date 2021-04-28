@@ -59,7 +59,6 @@
             <p class="mr-3">Jumlah Barang :</p>
             <p>{{$item -> count()}}</p>
         </div>
-        {{$item->link()}}
         
     </div>
 </x-app-layout>
