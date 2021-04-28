@@ -10,9 +10,8 @@ use Illuminate\Database\Eloquent\Collection\Paginate;
 
 class BarangController extends Controller
 {
-    //
-    public function all(Request $request)
-    {
+    public function list(Request $request){
+
         $id = $request->input('id');
         $limit = $request->input('limit', 5);
         $nama = $request->input('nama');
@@ -30,8 +29,7 @@ class BarangController extends Controller
             else
                 return ResponeFormatter::error(null, 'Data Tidak Berhasil Diambil', 404);
         }
-
-        $items = Barang::all();
+        $items = Barang::query();
 
         if ($nama)
             $items->where('name', 'like', '%' . $nama . '%');
